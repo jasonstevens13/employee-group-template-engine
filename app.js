@@ -41,11 +41,23 @@ function initialMgrPrompt() {
             name: "teamMember",
             message: "What type of team member would you like to add?",
             choices: ['Engineer', 'Intern', 'I do not want to add any more team members']
-        },
+        }
+    ])
+        .then(function (response) {
 
+            if (response.teamMember === 'Engineer') {
+                engineerPrompt();
+            }
+            if (response.teamMember === 'Intern') {
+                internPrompt();
+            }
+            if (response.teamMember === 'I do not want to add any more team members') {
+                console.log("You are done building your team.");
+                return;
+            }
+        });
 
-    ]);
-}
+};
 
 function engineerPrompt() {
     return inquirer.prompt([
@@ -74,11 +86,22 @@ function engineerPrompt() {
             name: "teamMember",
             message: "What type of team member would you like to add?",
             choices: ['Engineer', 'Intern', 'I do not want to add any more team members']
-        },
+        }
+    ])
+        .then(function (response) {
 
-
-    ]);
-}
+            if (response.teamMember === 'Engineer') {
+                engineerPrompt();
+            }
+            if (response.teamMember === 'Intern') {
+                internPrompt();
+            }
+            if (response.teamMember === 'I do not want to add any more team members') {
+                console.log("You are done building your team.");
+                return;
+            }
+        });
+};
 
 function internPrompt() {
     return inquirer.prompt([
@@ -108,10 +131,23 @@ function internPrompt() {
             message: "What type of team member would you like to add?",
             choices: ['Engineer', 'Intern', 'I do not want to add any more team members']
         },
+    ])
+        .then(function (response) {
 
+            if (response.teamMember === 'Engineer') {
+                engineerPrompt();
+            }
+            if (response.teamMember === 'Intern') {
+                internPrompt();
+            }
+            if (response.teamMember === 'I do not want to add any more team members') {
+                console.log("You are done building your team.");
+                return;
+            }
+        });
+};
 
-    ]);
-}
+initialMgrPrompt();
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
