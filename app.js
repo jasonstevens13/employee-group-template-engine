@@ -14,6 +14,105 @@ const render = require("./lib/htmlRenderer");
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
+function initialMgrPrompt() {
+    return inquirer.prompt([
+        {
+            type: "input",
+            name: "managerName",
+            message: "What is the Manager's name?"
+        },
+        {
+            type: "number",
+            name: "managerID",
+            message: "What is the Manager's ID?"
+        },
+        {
+            type: "input",
+            name: "managerEmail",
+            message: "What is the Manager's email address?"
+        },
+        {
+            type: "number",
+            name: "managerOfficeNumber",
+            message: "What is the Manager's office number?"
+        },
+        {
+            type: "list",
+            name: "teamMember",
+            message: "What type of team member would you like to add?",
+            choices: ['Engineer', 'Intern', 'I do not want to add any more team members']
+        },
+
+
+    ]);
+}
+
+function engineerPrompt() {
+    return inquirer.prompt([
+        {
+            type: "input",
+            name: "engineerName",
+            message: "What is the Engineer's name?"
+        },
+        {
+            type: "number",
+            name: "engineerID",
+            message: "What is the Engineer's ID?"
+        },
+        {
+            type: "input",
+            name: "engineerEmail",
+            message: "What is the Engineer's email address?"
+        },
+        {
+            type: "input",
+            name: "gitHubUN",
+            message: "What is the Engineer's GitHub username?"
+        },
+        {
+            type: "list",
+            name: "teamMember",
+            message: "What type of team member would you like to add?",
+            choices: ['Engineer', 'Intern', 'I do not want to add any more team members']
+        },
+
+
+    ]);
+}
+
+function internPrompt() {
+    return inquirer.prompt([
+        {
+            type: "input",
+            name: "internName",
+            message: "What is the intern's name?"
+        },
+        {
+            type: "number",
+            name: "internID",
+            message: "What is the intern's ID?"
+        },
+        {
+            type: "input",
+            name: "internEmail",
+            message: "What is the intern's email address?"
+        },
+        {
+            type: "input",
+            name: "internSchool",
+            message: "What is the intern's School?"
+        },
+        {
+            type: "list",
+            name: "teamMember",
+            message: "What type of team member would you like to add?",
+            choices: ['Engineer', 'Intern', 'I do not want to add any more team members']
+        },
+
+
+    ]);
+}
+
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
