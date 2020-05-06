@@ -9,6 +9,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const teamMembers = [];
 
 
 // Write code to use inquirer to gather information about the development team members,
@@ -44,6 +45,11 @@ function initialMgrPrompt() {
         }
     ])
         .then(function (response) {
+            // save response
+            // constructors
+            const mgr = new Manager(response.managerName, response.managerID, response.managerEmail, response.managerOfficeNumber);
+            // save globally into array;
+            teamMembers.push(mgr);
 
             if (response.teamMember === 'Engineer') {
                 engineerPrompt();
@@ -53,6 +59,14 @@ function initialMgrPrompt() {
             }
             if (response.teamMember === 'I do not want to add any more team members') {
                 console.log("You are done building your team.");
+                // render to html here
+                // write to file 'html renderer.js'
+                // variable for above doc with 
+                const exportHtml = render(teamMembers);
+                // write file to team html
+                outputPath.push(exportHtml);
+
+
                 return;
             }
         });
@@ -90,6 +104,11 @@ function engineerPrompt() {
     ])
         .then(function (response) {
 
+
+            const eng = new Engineer(response.engineerName, response.engineerID, response.engineerEmail, response.gitHubUN);
+            teamMembers.push(eng);
+
+
             if (response.teamMember === 'Engineer') {
                 engineerPrompt();
             }
@@ -98,6 +117,11 @@ function engineerPrompt() {
             }
             if (response.teamMember === 'I do not want to add any more team members') {
                 console.log("You are done building your team.");
+
+                const exportHtml = render(teamMembers);
+                outputPath.push(exportHtml);
+
+
                 return;
             }
         });
@@ -134,6 +158,9 @@ function internPrompt() {
     ])
         .then(function (response) {
 
+            const intrn = new Intern(response.internName, response.internID, response.internEmail, response.internSchool);
+            teamMembers.push(eng);
+
             if (response.teamMember === 'Engineer') {
                 engineerPrompt();
             }
@@ -142,6 +169,10 @@ function internPrompt() {
             }
             if (response.teamMember === 'I do not want to add any more team members') {
                 console.log("You are done building your team.");
+
+                const exportHtml = render(teamMembers);
+                outputPath.push(exportHtml);
+
                 return;
             }
         });
