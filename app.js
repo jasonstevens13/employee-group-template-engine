@@ -159,7 +159,7 @@ function internPrompt() {
         .then(function (response) {
 
             const intrn = new Intern(response.internName, response.internID, response.internEmail, response.internSchool);
-            teamMembers.push(eng);
+            teamMembers.push(intrn);
 
             if (response.teamMember === 'Engineer') {
                 engineerPrompt();
